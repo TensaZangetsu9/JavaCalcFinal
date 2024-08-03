@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    // не забывай про отступы
+
     public static void main(String[] args) {
         //добавил цикл, посмотри как теперь программа работает :) НО! это только на время тестирования и отладки, потом надо убрать будет
         while (true) {

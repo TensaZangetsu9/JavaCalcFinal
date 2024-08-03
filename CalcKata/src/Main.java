@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
+    // не забывай про отступы
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите арифметическое выражение");
@@ -14,13 +15,16 @@ public class Main {
         }
     }
 
+    //TODO вынести этот функционал в отдельный класс
     public static String calc(String input) { // Принимаем данные от пользователя и разбиваем их на подстроки с помощью split
         String[] tokens = input.split(" ");
-        if (tokens.length != 3) { // если больше 3 строк, то выбрасываем исключение
+        if (tokens.length != 3) { // если число элементов в массиве не равно 3, то выбрасываем исключение
             throw new IllegalArgumentException("Неверный формат выражения. Используйте пробелы между числами и операторами.");
         }
 
         int a = Integer.parseInt(tokens[0]);
+
+        //TODO проверки объединить в одну, подсказка - &&
         if (a > 10) {
             throw new IllegalArgumentException("Введите число до 10");
         }
@@ -29,25 +33,27 @@ public class Main {
             throw new IllegalArgumentException("Введите число до 10");
         }
 
-        int result;
         String operation = tokens[1];
-        switch (operation) {
-            case "+" -> result = a + b;
-            case "-" -> result = a - b;
-            case "*" -> result = a * b;
+
+        //так думаю будет красивее, создаем переменную и сразу в нее записываем результат свитча
+        int result = switch (operation) {
+            case "+" -> a + b;
+            case "-" -> a - b;
+            case "*" -> a * b;
             case "/" -> {
                 if (b == 0) {
                     throw new IllegalArgumentException("Деление на ноль недопустимо.");
                 }
-                result = a / b;
+                yield a / b;
             }
             default ->
                     throw new IllegalArgumentException("Неподдерживаемая операция. Поддерживаются только +, -, *, /.");
-        }
+        };
         return Integer.toString(result);
     }
 
 
+    //TODO converter тоже в отдельный класс
     private static String convertToRoman(int number) {
 
         return Integer.toString(number);

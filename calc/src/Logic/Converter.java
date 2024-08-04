@@ -12,6 +12,19 @@ public class Converter {
         return false;
 
     }
+    public static int convertToArabian(String romanInput){
+        for (int i = 0; i < romanNumbers.length; i++){
+            if (romanInput.equals(romanNumbers[i])){
+                return i;
+            }
+        }
+        return -1;
+    }
+    public static String convertToRoman(int arabian){
+        return romanNumbers[arabian];
+    }
+
 }
+
     
 

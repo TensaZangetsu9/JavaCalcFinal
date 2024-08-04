@@ -1,5 +1,5 @@
 package Logic;
-import static Logic.Converter.isRoman;
+
 public class Calculation {
 
     public static String calc(String input) { // Принимаем данные от пользователя и разбиваем их на подстроки с помощью split
@@ -7,12 +7,16 @@ public class Calculation {
         if (tokens.length != 3) { // если число элементов в массиве не равно 3, то выбрасываем исключение
             throw new IllegalArgumentException("Неверный формат выражения. Используйте пробелы между числами и операторами.");
         }
-        boolean isRoman;
-        int a = Integer.parseInt(tokens[0]);
-        int b = Integer.parseInt(tokens[2]);
-        if (Converter.isRoman(tokens[0]) && !Converter.isRoman(tokens[2])){
-
+        int a;
+        int b;
+        if ((Converter.isRoman(tokens[0]) && Converter.isRoman(tokens[2]))){
+        a = Converter.convertToArabian(tokens[0]);
+        b = Converter.convertToArabian(tokens[2]);
+        } else {
+            a = Integer.parseInt(tokens[0]);
+            b = Integer.parseInt(tokens[2]);
         }
+
         if ((a > 10) | (b > 10)) {
             throw new IllegalArgumentException("Введите число до 10");
         }

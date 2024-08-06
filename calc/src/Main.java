@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-import static Logic.Calculation.calc;
+import static core.Calculation.calc;
 
 public class Main {
 

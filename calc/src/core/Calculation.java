@@ -1,4 +1,4 @@
-package Logic;
+package core;
 
 public class Calculation {
 
@@ -11,38 +11,41 @@ public class Calculation {
         if (tokens.length != 3) {
             throw new IllegalArgumentException("Неверный формат выражения. Используйте пробелы между числами и операторами.");
         }
+
         int a;
         int b;
+        boolean isRoman;
         if ((Converter.isRoman(tokens[0]) && Converter.isRoman(tokens[2]))) {
             a = Converter.convertToArabian(tokens[0]);
             b = Converter.convertToArabian(tokens[2]);
-            // доработать логику и вывод римских в консоль
+            isRoman = true;
         } else {
             a = Integer.parseInt(tokens[0]);
             b = Integer.parseInt(tokens[2]);
+            isRoman = false;
         }
 
-        // добавить условие
-        if ((a > 10) | (b > 10)) {
-            throw new IllegalArgumentException("Введите число до 10");
+        if ((a > 10) || (b > 10) || (a <= 0) || (b <= 0)) {
+            throw new IllegalArgumentException("Введите число от 0 до 10");
         }
 
         String operation = tokens[1];
 
-        // можно вынести в отдельный метод
         int result = switch (operation) {
             case "+" -> a + b;
             case "-" -> a - b;
             case "*" -> a * b;
-            case "/" -> {
-                if (b == 0) {
-                    throw new IllegalArgumentException("Деление на ноль недопустимо.");
-                }
-                yield a / b;
-            }
+            case "/" -> a / b;
             default ->
                     throw new IllegalArgumentException("Неподдерживаемая операция. Поддерживаются только +, -, *, /.");
         };
+
+        if (isRoman) {
+            if (result <= 0) {
+                throw new IllegalArgumentException("Результатом операции римскими числами не может быть это число");
+            }
+            return Converter.convertToRoman(result);
+        }
         return Integer.toString(result);
     }
 }

@@ -25,11 +25,11 @@ public class Calculation {
             isRoman = false;
         }
 
-        if ((a > 10) || (b > 10)) {
-            throw new IllegalArgumentException("Введите число от 0 до 10");
-        } else if ((a <= 0) || (b <= 0)) {
+        if ((a > 10) || (b > 10) || (a <= 0) || (b <= 0)) {
             throw new IllegalArgumentException("Введите число от 0 до 10");
         }
+
+
 
         String operation = tokens[1];
 

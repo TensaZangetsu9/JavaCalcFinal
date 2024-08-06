@@ -29,8 +29,6 @@ public class Calculation {
             throw new IllegalArgumentException("Введите число от 0 до 10");
         }
 
-
-
         String operation = tokens[1];
 
         int result = switch (operation) {
